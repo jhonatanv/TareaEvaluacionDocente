@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:q="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="contenido">
+		<h:form id="form" prependId="false">
+			
+			<h:panelGrid columns="2" id="contenedor">
+				<h:outputLabel value="Registrar" />
+				<br></br>
+				<h:outputLabel value="codigo" for="codigo" />
+				<h:inputText value="#{gestionPrograma.codigo}"  id="codigo"
+					p:placeholder="Escriba un programa" required="true" style="width: 465px; "/>
+				<h:outputLabel value="nombre" for="nombre" />
+				<h:inputText value="#{gestionPrograma.nombre}"  id="nombre"
+					p:placeholder="Escriba un programa" required="true" style="width: 465px; "/>
+				
+				<p:outputLabel value="Facultad" for="comboFacultad"/>
+				<p:selectOneMenu id="comboFacultad" value="#{gestionPrograma.facultadSelecccionado}" converter="#{facultadConverter}">
+						<f:selectItems value="#{gestionPrograma.listaFacultad}" var="fac"
+							itemValue="#{fac}" itemLabel="#{fac.nombre}" />
+					</p:selectOneMenu>
+			</h:panelGrid>
+			<h:commandButton id="botonPro" action="#{gestionPrograma.crear()}"
+			value="#{msj['botones.crear']}}" update="form"/>
+		</h:form>
+	</ui:define>
+</ui:composition>

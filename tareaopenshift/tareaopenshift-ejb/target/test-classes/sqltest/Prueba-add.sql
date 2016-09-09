@@ -1,0 +1,1 @@
+INSERT INTO usuario(idusuario, nombre, apellido, usuario, password)VALUES (1094932326, 'antonio', 'perez', 'hulk', '1234');
