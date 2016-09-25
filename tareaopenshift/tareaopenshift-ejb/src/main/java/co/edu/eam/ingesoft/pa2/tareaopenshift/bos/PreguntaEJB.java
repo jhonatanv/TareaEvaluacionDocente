@@ -26,7 +26,7 @@ public class PreguntaEJB extends EJBGenerico<Pregunta> implements PreguntaRemote
 
 	public void crear(Pregunta pregunta) throws ExcepcionNegocio {
 		if (buscar(pregunta.getIdPregunta()) != null) {
-			throw new ExcepcionNegocio("esta pregunta ya se encuentra registrada");
+			throw new ExcepcionNegocio("Esta pregunta ya se encuentra registrada");
 		} else {
 			dao.crear(pregunta);
 		}
@@ -38,7 +38,7 @@ public class PreguntaEJB extends EJBGenerico<Pregunta> implements PreguntaRemote
 	}
 
 	@Override
-	public List<Pregunta> listarPrograma() {
+	public List<Pregunta> listarPregunta() {
 		return dao.ejecutarNamedQuery(Pregunta.LISTA_PREGUNTAS);
 	}
 }

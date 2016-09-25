@@ -41,7 +41,7 @@ public class ControladorPreguntas implements Serializable {
 	 */
 	@Secured
 	public void crear() {
-		idPregrunta = preguntaejb.listarPrograma().size();
+		idPregrunta = preguntaejb.listarPregunta().size();
 		
 		Pregunta p = new Pregunta(idPregrunta, pregunta, valor);
 		preguntaejb.crear(p);

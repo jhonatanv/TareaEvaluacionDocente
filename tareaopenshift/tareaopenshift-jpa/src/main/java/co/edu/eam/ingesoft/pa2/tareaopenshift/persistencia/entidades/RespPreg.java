@@ -3,13 +3,14 @@
  */
 package co.edu.eam.ingesoft.pa2.tareaopenshift.persistencia.entidades;
 
-
 import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -19,42 +20,33 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "RespuestasPreg")
+@IdClass(value = RespPregPK.class)
 public class RespPreg implements Serializable {
 
 	@Id
-	@Column(name = "idRespuestasPreg")
-	private int idRespPreg;
+	@ManyToOne
+	@JoinColumns({ @JoinColumn(name = "idPregunta", referencedColumnName = "idPregunta"),
+		@JoinColumn(name = "idEvaluacion", referencedColumnName = "idEvaluacion") })
+	private PregEval idPregEval;
 
+	@Id
 	@ManyToOne
 	@JoinColumn(name = "idRespuesta")
 	private Respuesta idRespuesta;
 
-	@ManyToOne
-	@JoinColumn(name = "idPregunta")
-	private Pregunta idPregunta;
-
-	@ManyToOne
-	@JoinColumn(name = "idEvaluacion")
-	private Evaluacion idEvaluacion;
-	
 	@Column(name = "calificacion")
 	private double calificacion;
 
-	// Constructor vacio
 	public RespPreg() {
 		super();
 	}
 
-	// Constructor
-	public RespPreg(Respuesta idRespuesta, Pregunta idPregunta, Evaluacion idEvaluacion, double calificacion) {
+	public RespPreg(PregEval idPregEval, Respuesta idRespuesta, double calificacion) {
 		super();
+		this.idPregEval = idPregEval;
 		this.idRespuesta = idRespuesta;
-		this.idPregunta = idPregunta;
-		this.idEvaluacion = idEvaluacion;
 		this.calificacion = calificacion;
 	}
-
-	// Accesores y modificadores
 
 	public Respuesta getIdRespuesta() {
 		return idRespuesta;
@@ -64,20 +56,12 @@ public class RespPreg implements Serializable {
 		this.idRespuesta = idRespuesta;
 	}
 
-	public Pregunta getIdPregunta() {
-		return idPregunta;
+	public PregEval getIdPregEval() {
+		return idPregEval;
 	}
 
-	public void setIdPregunta(Pregunta idPregunta) {
-		this.idPregunta = idPregunta;
-	}
-
-	public Evaluacion getIdEvaluacion() {
-		return idEvaluacion;
-	}
-
-	public void setIdEvaluacion(Evaluacion idEvaluacion) {
-		this.idEvaluacion = idEvaluacion;
+	public void setIdPregEval(PregEval idPregEval) {
+		this.idPregEval = idPregEval;
 	}
 
 	public double getCalificacion() {
