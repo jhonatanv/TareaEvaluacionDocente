@@ -23,7 +23,7 @@ public class FiltroSeguridadRest implements ContainerRequestFilter{
 	public void filter(ContainerRequestContext ctxReq) throws IOException {
 		// TODO Auto-generated method stub
 		String token = ctxReq.getHeaderString("Authorization");
-		if(LoginRest.tokens.containsKey(token)){
+		if(!LoginRest.tokens.containsKey(token)){
 			RespuestaDTO dto = new RespuestaDTO(null, "No autorizado", "-3");
 			Response res = Response.status(401).entity(dto).build();
 

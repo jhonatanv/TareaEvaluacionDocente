@@ -9,6 +9,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,6 +26,7 @@ public class Respuesta implements Serializable {
 	
 	@Id
 	@Column(name = "idRespuestas")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idRespuestas;
 
 	@ManyToOne
@@ -43,9 +46,8 @@ public class Respuesta implements Serializable {
 	}
 
 	// Constructor
-	public Respuesta(int idRespuestas, Grupo idGrupo, Date fecha_Hora, String comentario) {
+	public Respuesta(Grupo idGrupo, Date fecha_Hora, String comentario) {
 		super();
-		this.idRespuestas = idRespuestas;
 		this.idGrupo = idGrupo;
 		this.fecha_Hora = fecha_Hora;
 		this.comentario = comentario;

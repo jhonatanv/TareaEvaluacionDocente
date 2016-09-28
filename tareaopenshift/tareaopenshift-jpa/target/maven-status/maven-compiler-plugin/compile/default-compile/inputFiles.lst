@@ -6,6 +6,7 @@ C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshi
 C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-jpa\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\persistencia\entidades\PregEval.java
 C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-jpa\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\persistencia\dto\RespuestaPreguntaDTO.java
 C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-jpa\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\persistencia\entidades\Grupo.java
+C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-jpa\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\persistencia\entidades\Calificado.java
 C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-jpa\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\persistencia\entidades\Pregunta.java
 C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-jpa\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\persistencia\entidades\RespPreg.java
 C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-jpa\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\persistencia\entidades\SuperAdmin.java
@@ -22,4 +23,5 @@ C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshi
 C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-jpa\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\persistencia\entidades\Programa.java
 C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-jpa\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\persistencia\entidades\Facultad.java
 C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-jpa\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\persistencia\dto\RespuestaEvaluacionDTO.java
+C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-jpa\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\persistencia\entidades\CalificadoPK.java
 C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-jpa\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\persistencia\entidades\Coordinador.java

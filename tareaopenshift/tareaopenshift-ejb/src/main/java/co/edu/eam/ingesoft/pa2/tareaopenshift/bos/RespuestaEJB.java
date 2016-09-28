@@ -17,6 +17,7 @@ import co.edu.eam.ingesoft.pa2.tareaopenshift.excepciones.ExcepcionNegocio;
 import co.edu.eam.ingesoft.pa2.tareaopenshift.implementacion.EJBGenerico;
 import co.edu.eam.ingesoft.pa2.tareaopenshift.persistencia.dto.RespuestaEvaluacionDTO;
 import co.edu.eam.ingesoft.pa2.tareaopenshift.persistencia.dto.RespuestaPreguntaDTO;
+import co.edu.eam.ingesoft.pa2.tareaopenshift.persistencia.entidades.Calificado;
 import co.edu.eam.ingesoft.pa2.tareaopenshift.persistencia.entidades.Evaluacion;
 import co.edu.eam.ingesoft.pa2.tareaopenshift.persistencia.entidades.Grupo;
 import co.edu.eam.ingesoft.pa2.tareaopenshift.persistencia.entidades.PregEval;
@@ -31,6 +32,9 @@ public class RespuestaEJB extends EJBGenerico<Respuesta> implements RespuestaRem
 
 	@EJB
 	private RespPregEJB respPregEJB;
+	
+	@EJB
+	private CalificadoEJB calificadoEJB;
 
 	@EJB
 	private GrupoEJB grupoEJB;
@@ -66,21 +70,25 @@ public class RespuestaEJB extends EJBGenerico<Respuesta> implements RespuestaRem
 
 		if (resp != null) {
 			Grupo grup = grupoEJB.buscar(resp.getIdGrupo());
-			Respuesta respuesta = new Respuesta(4, grup, GregorianCalendar.getInstance().getTime(),
+			Respuesta respuesta = new Respuesta(grup, GregorianCalendar.getInstance().getTime(),
 					resp.getComentario());
 			crear(respuesta);
 
 	        
-			Evaluacion eval = new Evaluacion(3, GregorianCalendar.getInstance().getTime(), "calificado", grup.getAnio() , grup.getPeriodo() );
+			Evaluacion eval = new Evaluacion(GregorianCalendar.getInstance().getTime(), "calificado", grup.getAnio() , grup.getPeriodo() );
 			
 			for (RespuestaPreguntaDTO respuestraPregunta : resp.getRespuesta()) {
 				Pregunta preg = preguntaEJB.buscar(respuestraPregunta.getIdPregunta());
 				PregEval pregEvaluacion = new PregEval(preg, eval);
 				pregEvalEJB.crear(pregEvaluacion);
-
+				
 				RespPreg respPreg = new RespPreg(pregEvaluacion, respuesta, respuestraPregunta.getCalificacion());
 				respPregEJB.crear(respPreg);
+				
+
 			}
+			Calificado ca = new Calificado(resp.getCodigoEstudiante(), grup, true);				
+             calificadoEJB.crear(ca);
 			return true;
 		} else {
 			return false;

@@ -28,6 +28,12 @@ public class WSLDEJB implements Serializable {
 
 	@EJB
 	private AsignaturaEJB asignaturaEJB;
+	
+	@EJB
+	private GrupoEJB grupoEJB;
+	
+	@EJB
+	private DocenteEJB docenteEJB;
 
 	@EJB
 	private ProgramaEJB programaEJB;
@@ -37,7 +43,7 @@ public class WSLDEJB implements Serializable {
 
 	private Programa programa;
 
-	private Facultad facultad;
+	private Facultad facult;
 
 	private Asignatura asignatura;
 
@@ -57,15 +63,15 @@ public class WSLDEJB implements Serializable {
 			for (int i = 0; i < dto.size(); i++) {
 
 				if (facultadEJB.buscar(dto.get(i).getAsignatura().getPrograma().getFacultad().getCodigo()) != null) {
-					facultad = facultadEJB.buscar(dto.get(i).getAsignatura().getPrograma().getFacultad().getCodigo());
+					facult = facultadEJB.buscar(dto.get(i).getAsignatura().getPrograma().getFacultad().getCodigo());
 
 				} else {
 
-					facultad = new Facultad();
+					facult = new Facultad();
 
-					facultad.setIdFacultad(dto.get(i).getAsignatura().getPrograma().getFacultad().getCodigo());
-					facultad.setNombre(dto.get(i).getAsignatura().getPrograma().getFacultad().getNombre());
-					facultadEJB.crear(facultad);
+					facult.setIdFacultad(dto.get(i).getAsignatura().getPrograma().getFacultad().getCodigo());
+					facult.setNombre(dto.get(i).getAsignatura().getPrograma().getFacultad().getNombre());
+					facultadEJB.crear(facult);
 				}
 
 				if (programaEJB.buscar(dto.get(i).getAsignatura().getPrograma().getCodigo()) != null) {
@@ -75,7 +81,7 @@ public class WSLDEJB implements Serializable {
 
 					programa = new Programa();
 
-					programa.setIdFacultad(facultad);
+					programa.setIdFacultad(facult);
 					programa.setIdPrograma(dto.get(i).getAsignatura().getPrograma().getCodigo());
 					programa.setNombrePrograma(dto.get(i).getAsignatura().getPrograma().getNombre());
 					programaEJB.crear(programa);
@@ -119,8 +125,13 @@ public class WSLDEJB implements Serializable {
 		}
 	}
 
+	/**
+	 * lista grupos
+	 * @param cod, codigo estudiante
+	 * @param ced, cedula estudiante
+	 * @return lista
+	 */
 	public List<Grupo> listarGrupos(String cod, String ced) {
-
 		ServiciosEducativosService cliente = new ServiciosEducativosService();
 		ServiciosAcademicos servicio = cliente.getServiciosAcademicos();
 
@@ -129,48 +140,88 @@ public class WSLDEJB implements Serializable {
 				"http://174.142.65.144:28080/eamweb/serviciosAcademicos");
 
 		List<Curso> dto = servicio.consultarCursosEstudiante(cod, ced);
-		List<Grupo> lista = new ArrayList<>();
+		List<Grupo> listaGrupo = new ArrayList<>();
 		for (int i = 0; i < dto.size(); i++) {
-			facultad = new Facultad();
-			facultad.setIdFacultad(dto.get(i).getAsignatura().getPrograma().getFacultad().getCodigo());
-			facultad.setNombre(dto.get(i).getAsignatura().getPrograma().getFacultad().getNombre());
-			programa = new Programa();
-			programa.setIdFacultad(facultad);
-			programa.setIdPrograma(dto.get(i).getAsignatura().getPrograma().getCodigo());
-			programa.setNombrePrograma(dto.get(i).getAsignatura().getPrograma().getNombre());
-			asignatura = new Asignatura();
-			asignatura.setIdAsignatura(dto.get(i).getAsignatura().getCodigo());
-			asignatura.setIdPrograma(programa);
-			asignatura.setNombreAsignatura(dto.get(i).getAsignatura().getNombre());
 
-			Facultad facul = new Facultad();
-			facul.setIdFacultad(dto.get(i).getDocente().getPrograma().getFacultad().getCodigo());
-			facul.setNombre(dto.get(i).getDocente().getPrograma().getFacultad().getNombre());
-			Programa program = new Programa();
-			program.setIdFacultad(facultad);
-			program.setIdPrograma(dto.get(i).getDocente().getPrograma().getCodigo());
-			program.setNombrePrograma(dto.get(i).getDocente().getPrograma().getNombre());
+			facult = facultadEJB.buscar(dto.get(i).getAsignatura().getPrograma().getFacultad().getCodigo());
+			if (facult == null) {
+				
+				facult = new Facultad();
+				facult.setIdFacultad(dto.get(i).getAsignatura().getPrograma().getFacultad().getCodigo());
+				facult.setNombre(dto.get(i).getAsignatura().getPrograma().getFacultad().getNombre());
+				facultadEJB.crear(facult);
+			}
 
-			docente = new Docente();
-			docente.setApellido(dto.get(i).getDocente().getApellido());
-			docente.setId(dto.get(i).getDocente().getDocumentoidentificacion());
-			docente.setIdPrograma(program);
-			docente.setNombre(dto.get(i).getDocente().getNombre());
+			programa = programaEJB.buscar(dto.get(i).getAsignatura().getPrograma().getCodigo());
+			
+			if (programa == null) {
+				
+				programa = new Programa();
+				programa.setIdFacultad(facult);
+				programa.setIdPrograma(dto.get(i).getAsignatura().getPrograma().getCodigo());
+				programa.setNombrePrograma(dto.get(i).getAsignatura().getPrograma().getNombre());
+				programaEJB.crear(programa);
+			}
 
-			Grupo grupo = new Grupo();
-			grupo.setAnio(GregorianCalendar.getInstance().getTime());
-			grupo.setGrupo(dto.get(i).getGrupo().toString());
-			grupo.setIdAsignatura(asignatura);
-			grupo.setIdDocente(docente);
-			grupo.setIdGrupo(dto.get(i).getId());
-			grupo.setPeriodo(2);
+			asignatura = asignaturaEJB.buscar(dto.get(i).getAsignatura().getCodigo());
+			
+			if (asignatura == null) {
+				
+				asignatura = new Asignatura();
+				asignatura.setIdAsignatura(dto.get(i).getAsignatura().getCodigo());
+				asignatura.setIdPrograma(programa);
+				asignatura.setNombreAsignatura(dto.get(i).getAsignatura().getNombre());
+				asignaturaEJB.crear(asignatura);
+			}
 
-			lista.add(grupo);
+			Facultad fac = facultadEJB.buscar(dto.get(i).getDocente().getPrograma().getFacultad().getCodigo());
+			
+			if (fac == null) {
+				fac = new Facultad();
+				fac.setIdFacultad(dto.get(i).getDocente().getPrograma().getFacultad().getCodigo());
+				fac.setNombre(dto.get(i).getDocente().getPrograma().getFacultad().getNombre());
+				facultadEJB.crear(fac);
+			}
+
+			Programa programa = programaEJB.buscar(dto.get(i).getDocente().getPrograma().getCodigo());
+			
+			if (programa == null) {
+				
+				programa = new Programa();
+				programa.setIdFacultad(fac);
+				programa.setIdPrograma(dto.get(i).getDocente().getPrograma().getCodigo());
+				programa.setNombrePrograma(dto.get(i).getDocente().getPrograma().getNombre());
+				programaEJB.crear(programa);
+			}
+
+			docente = docenteEJB.buscar(dto.get(i).getDocente().getDocumentoidentificacion());
+			
+			if (docente == null) {
+				
+				docente = new Docente();
+				docente.setApellido(dto.get(i).getDocente().getApellido());
+				docente.setId(dto.get(i).getDocente().getDocumentoidentificacion());
+				docente.setIdPrograma(programa);
+				docente.setNombre(dto.get(i).getDocente().getNombre());
+				docenteEJB.crear(docente);
+			}
+
+			Grupo g = grupoEJB.buscar(dto.get(i).getId());
+			if (g == null) {
+				
+				g = new Grupo();
+				g.setAnio(GregorianCalendar.getInstance().getTime());
+				g.setGrupo(dto.get(i).getGrupo().toString());
+				g.setIdAsignatura(asignatura);
+				g.setIdDocente(docente);
+				g.setIdGrupo(dto.get(i).getId());
+				g.setPeriodo(2);
+				grupoEJB.crear(g);
+			}
+			
+			listaGrupo.add(g);
 		}
-		return lista;
+		return listaGrupo;
 	}
-	
-	
-	
 
 }

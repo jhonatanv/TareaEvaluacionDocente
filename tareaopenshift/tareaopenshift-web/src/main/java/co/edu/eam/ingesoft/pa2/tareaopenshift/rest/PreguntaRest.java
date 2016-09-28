@@ -17,7 +17,6 @@ import co.edu.eam.ingesoft.pa2.tareaopenshift.interceptores.Secured;
 import co.edu.eam.ingesoft.pa2.tareaopenshift.persistencia.dto.RespuestaEvaluacionDTO;
 import co.edu.eam.ingesoft.pa2.tareaopenshift.persistencia.entidades.Pregunta;
 import co.edu.eam.ingesoft.pa2.tareaopenshift.rest.dto.RespuestaDTO;
-
 @Path("/pregunta")
 public class PreguntaRest {
 	
@@ -27,7 +26,6 @@ public class PreguntaRest {
 	@EJB
 	private PreguntaEJB preguntaEjb;
 	
-	@Secured
 	@Path("/listarPreguntas")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

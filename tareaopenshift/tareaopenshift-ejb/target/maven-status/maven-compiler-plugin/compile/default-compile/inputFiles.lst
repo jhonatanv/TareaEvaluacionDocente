@@ -1,4 +1,5 @@
 C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-ejb\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\ejbremote\PreguntaRemoteEJB.java
+C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-ejb\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\bos\CalificadoEJB.java
 C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-ejb\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\data\MemberRepository.java
 C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-ejb\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\ejbremote\GrupoRemoteEJB.java
 C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-ejb\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\bos\RespPregEJB.java
@@ -7,6 +8,7 @@ C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshi
 C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-ejb\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\ejbremote\PregEvalRemoteEJB.java
 C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-ejb\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\bos\WSLDEJB.java
 C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-ejb\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\bos\DocenteEJB.java
+C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-ejb\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\ejbremote\CalificadoRemoteEJB.java
 C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-ejb\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\ejbremote\DocenteRemoteEJB.java
 C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-ejb\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\ejbremote\FacultadRemoteEJB.java
 C:\Users\JHONATAN VANEGAS\git\TareaEvaluacionDocente\tareaopenshift\tareaopenshift-ejb\src\main\java\co\edu\eam\ingesoft\pa2\tareaopenshift\service\MemberRegistration.java
